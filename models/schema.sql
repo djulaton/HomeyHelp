@@ -4,6 +4,7 @@ CREATE DATABASE homeyhelp_db;
 CREATE TABLE homies(
     id INT AUTO_INCREMENT NOT NULL,
     user VARCHAR(16) NOT NULL,
+    password_hash BINARY(40) NOT NULL,
     email VARCHAR(255) NOT NULL,
     phone INT(10) NOT NULL,
     bio VARCHAR(255) NOT NULL,
