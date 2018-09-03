@@ -14,12 +14,10 @@ CREATE TABLE homies(
     budget INT NOT NULL,
     finance_score INT NOT NULL,
     clean_score INT NOT NULL,
-    personality_score INT NOT NULL,
+    personality_type varchar(4) NOT NULL,
     job_title VARCHAR(255) NOT NULL,
-    employed BOOLEAN false,
-    drugs BOOLEAN false,
-    drug_type VARCHAR(255),
+    employed BOOLEAN default false,
     city VARCHAR(255) NOT NULL,
-    zip_code INT NOT NULL,
+    zip_code INT(5) NOT NULL,
     PRIMARY KEY(user)
 );
