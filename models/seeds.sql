@@ -62,8 +62,6 @@ VALUES ("eric", "skaterBoi@gmail.com", 9167893432, "Hey folks! My name is Eric. 
 INSERT INTO homies (user, email, phone, bio, hobbies, age, gender, budget, finance_score, clean_score, personality_type, job_title, employed, city, zip_code) 
 VALUES ("janeV", "janeVillanueva@gmail.com", 3054548989, "Hi amigos/amigas! I'm Jane Villanueva. I'm a passionate writer of romance novels and working part time as a waitress at the Marbella. I'm also a full time mommy and currently working on my next novel", "writing, planning parties, and dancing", 30, "female", 100.00, 60, 87, "ENTP", "Writer", true, "Miami", 33101);
 
-INSERT INTO homies (user, email, phone, bio, hobbies, age, gender, budget, finance_score, clean_score, personality_type, job_title, employed, city, zip_code) 
-VALUES ("mateo", "matato@gmail.com", 5105659098, "Hi everybody! My name is Mateo. I'm looking to move out of my mommy and daddy's house and looking forward to staying with a new roommate!", "watching PJ Masks, playing with friends from daycare, and collecting toy cars", 3, "male", 300.00, 80, 70, "ESTJ", "An entitled child", true, "Concord", 94521);
 
 INSERT INTO homies (user, email, phone, bio, hobbies, age, gender, budget, finance_score, clean_score, personality_type, job_title, employed, city, zip_code) 
 VALUES ("dj", "dpj@gmail.com", 4158982121, "Hi y'all! My name is Diana. I currently work at Google as a Product Specialist. I'm currently attending a full stack web development program as I have a passion for technology and coding. I'm a huge foodie and I love meeting new people. I'm easy going and love being a homebody", "Netflix and chilling, hiking, and foodie", 34, "female", 300.00, 80, 68, "ESFJ", "Product Specialist", true, "Mountain View", 94043);
@@ -102,5 +100,3 @@ INSERT INTO homies (user, email, phone, bio, hobbies, age, gender, budget, finan
 VALUES ("barrywood", "barry.wood93@example.com", 4892969961, "Looking for my dream roommate", "Not really any", 34, "M", 1000, 70, 80, "ESFP", "Actor", true, "Hayward", 94540);
 
 -- End of Jeremiah's homies --
-
-
