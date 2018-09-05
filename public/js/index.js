@@ -1,8 +1,20 @@
 // Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
+var user = $("#user").val().trim()
+var password =$("#password").val().trim()
+var email=$("#email").val()
+var bio =$("#bio").val().trim()
+var hobbies =$("#hobbies").val().trim()
+var age =parseInt($("#age").val().trim())
+var gender=$("#gender").val().trim()
+var financeScore=parseFloat($("#finance").val().trim())
+var personalityScore=parseFloat($("#personality").val().trim())
+var cleanScore = parseFloat($("#clean").val().trim())
+var jobTitle=$("#job").val().trim()
+var employed = false
+var city = $("#city").val().trim()
+var zip = parseInt($("#zip").val().trim())
 var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
+
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -64,11 +76,25 @@ var refreshExamples = function() {
 var handleFormSubmit = function(event) {
   event.preventDefault();
 
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
+  var User = {
+    user: user,
+    password_hash: password,
+    email: email,
+    phone: phone,
+    bio: bio,
+    hobbies: hobbies,
+    age: age,
+    gender: gender,
+    budget: budget,
+    finance_score: financeScore,
+    personality_score: personalityScore,
+    clean_score: cleanScore,
+    job_title: jobTitle,
+    employed: employed,
+    city: city,
+    zip: zip,
   };
-
+module.exports=User
   if (!(example.text && example.description)) {
     alert("You must enter an example text and description!");
     return;
@@ -78,8 +104,8 @@ var handleFormSubmit = function(event) {
     refreshExamples();
   });
 
-  $exampleText.val("");
-  $exampleDescription.val("");
+  exampleText.val("");
+  exampleDescription.val("");
 };
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
@@ -95,5 +121,5 @@ var handleDeleteBtnClick = function() {
 };
 
 // Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+submitBtn.on("click", handleFormSubmit);
+exampleList.on("click", ".delete", handleDeleteBtnClick);
