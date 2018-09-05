@@ -62,13 +62,9 @@ INSERT INTO homies (user, email, phone, bio, hobbies, age, gender, budget, finan
 VALUES ("janeV", "janeVillanueva@gmail.com", 3054548989, "Hi amigos/amigas! I'm Jane Villanueva. I'm a passionate writer of romance novels and working part time as a waitress at the Marbella. I'm also a full time mommy and currently working on my next novel", "writing, planning parties, and dancing", 30, female, 100.00, 60, 87, 94, "Writer", "Miami", 33101)
 
 INSERT INTO homies (user, email, phone, bio, hobbies, age, gender, budget, finance_score, clean_score, personality_score, job_title, employed, drugs, drug_type, city, zip_code) 
-VALUES ("mateo", "matato@gmail.com", 5105659098, "Hi everybody! My name is Mateo. I'm looking to move out of my mommy and daddy's house and looking forward to staying with a new roommate!", "watching PJ Masks, playing with friends from daycare, and collecting toy cars", 3, male, 300.00, 80, 70, 95, "An entitled child", "Concord", 94521)
+VALUES ("mateo", "matato@gmail.com", 5105659098, "Hi everybody! My name is Mateo. I'm looking to move out of my mommy and daddy's house and looking forward to staying with a new roommate!", "watching PJ Masks, playing with friends from daycare, and collecting toy cars", 33, male, 300.00, 80, 70, 95, "An entitled child", "Concord", 94521)
 
 INSERT INTO homies (user, email, phone, bio, hobbies, age, gender, budget, finance_score, clean_score, personality_score, job_title, employed, drugs, drug_type, city, zip_code) 
 VALUES ("dj", "dpj@gmail.com", 4158982121, "Hi y'all! My name is Diana. I currently work at Google as a Product Specialist. I'm currently attending a full stack web development program as I have a passion for technology and coding. I'm a huge foodie and I love meeting new people. I'm easy going and love being a homebody", "Netflix and chilling, hiking, and foodie", 34, female, 300.00, 80, 68, 85, "Product Specialist", "Mountain View", 94043)
 
 -- End of Diana's homies --
-
-
-
-
