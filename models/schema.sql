@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS homehelp_db;
+DROP DATABASE IF EXISTS homeyhelp_db;
 CREATE DATABASE homeyhelp_db;
 
 CREATE TABLE homies(
