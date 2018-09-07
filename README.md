@@ -132,3 +132,11 @@ a: Freezing
 b: Contamination
 c: Rotting
 d: Burning
+
+
+
+diana: create login and registration front end in handlebars, use db for registration form
+
+jeremiah: personalityscore using 16personalities link, clean score, finance score
+
+roy: create form capture for registration, login page, encrypt and compare passwords
