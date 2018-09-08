@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>HomeyHelp</title>
+    <title>Home Page</title>
 
     <!-- Latest compiled and minified CSS & JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -14,35 +14,69 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
         crossorigin="anonymous">
 
+    <!-- Personal CSS file -->
+    <link rel="stylesheet" type="text/css" media="screen" href="../styles/styles.css" />
+
 </head>
 
 <body>
 
-    <div class="container">
+    <div class="bg">
 
-        <div class="jumbotron">
-            <img class="img-responsive" src="../images/HomeyHelpLogo.JPG">
-            <!-- <h1>
+        <div class="container" id="homePage">
+
+            <div class="jumbotron">
+                <img class="img-responsive" src="../images/HomeyHelpLogo.JPG">
+                <!-- <h1>
                 <i class="fas fa-user-friends" aria-hidden="true"></i> HomeyHelp</h1> -->
-            <hr>
-            <h2>Answer a few basic questions. </h2>
-            <h2>Then find the roommate with the greatest compatibility!</h2>
-            <br>
+                <hr>
+                <h2>Answer a few basic questions. </h2>
+                <h2>Then find the roommate with the greatest compatibility!</h2>
+                <br>
 
-            <div>
-                <a href="/survey">
-                    <button type="button" class="btn btn-lg btn-primary">
-                        <h4>
-                            <span class="glyphicon glyphicon-list-alt"></span> Go to Survey</h4>
-                    </button>
-                </a>
+                <hr>
+
+                <h2>Login</h2>
+
+                <form>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Email</label>
+                            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Password</label>
+                            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                        </div>
+                    </div>
+
+                </form>
+
+                <footer class="footer">
+                    <div class="container">
+                        <p id="newLogin">
+                            <a href="/api/newUser"><i class="fas fa-question-circle"></i> New user? Create new login</a>
+                        </p>
+                    </div>
+                </footer>
+
+                <div>
+
+
+                    <a href="/registration">
+                        <button type="button" class="btn btn-lg btn-primary">
+                            <h4>
+                                <span class="glyphicon glyphicon-list-alt"></span> Go to Registration Page</h4>
+                        </button>
+                    </a>
+                </div>
+
             </div>
 
         </div>
 
     </div>
-
-
 </body>
 
 </html>

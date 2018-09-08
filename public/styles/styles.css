@@ -1,3 +1,45 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+#homePage {
+    /* width: 300px; */
+    height: 765px;
+    padding: 15px;
+    background-color: skyblue;
+    box-shadow: 10px 10px 5px grey;
+}
+
+#regPage {
+  /* width: 300px; */
+  height: 708px;
+  padding: 15px;
+  background-color: skyblue;
+  box-shadow: 10px 10px 5px grey;
+}
+
+img {
+  height: 300px;
+  width: 300px;
+  border-radius: 5%;
+}
+
+body, html {
+  height: 100%;
+}
+.bg {
+  /* The image used */
+  background-image: url("../images/room-background.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#newLogin {
+  font-size: 14px;
+}
