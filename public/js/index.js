@@ -4,19 +4,19 @@ var $submitBtn = $("#submit");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveExample: function(example) {
+  saveUser: function(User) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
+      url: "api/newuser",
+      data: JSON.stringify(User)
     });
   },
-  getExamples: function() {
+  login: function() {
     return $.ajax({
-      url: "api/examples",
+      url: "api/login",
       type: "GET"
     });
   },
@@ -59,26 +59,34 @@ var refreshExamples = function() {
 
 // handleFormSubmit is called whenever we submit a new example
 // Save the new example to the db and refresh the list
+var handleLogin = function(event){
+  event.preventDefault();
+  var login =$("#emailLogin").val().trim()
+  var password = $("#passwordLogin").val().trim()
+
+  API.login(login, password)
+}
 var handleFormSubmit = function(event) {
   event.preventDefault();
   var User = {
-    user: $("#user").val().trim(),
+    user: $("#name").val().trim(),
     password: $("#password").val().trim(),
     email:$("#email").val().trim(),
-    phone: $("#bio").val().trim(),
+    phone: $("#phoneNumber").val().trim(),
     bio:  $("#bio").val().trim(),
     hobbies: $("#hobbies").val().trim(),
     age: parseInt($("#age").val().trim()),
     gender: $("#gender").val().trim(),
     budget: parseFloat($("#budget").val().trim()),
     finance_score: parseInt($("#financeScore").val().trim()),
-    personality_score: parseInt($("#personalityScore").val().trim()) ,
+    personality_score: parseInt($("#personalityScore").val().trim()),
     clean_score: parseInt($("#cleanScore").val().trim()),
     job_title: $("#jobTitle").val().trim(),
-    employed: true,
+    employed: $("employed").val().trim(),
     city: $("#city").val().trim(),
     zip: parseInt("#zip").val().trim() ,
   };
+  API.saveUser(User)
   //create new api route for new user, create ajax to call body of user
 };
 
