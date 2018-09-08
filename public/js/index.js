@@ -1,20 +1,6 @@
 // Get references to page elements
-var user = $("#user").val().trim()
-var password =$("#password").val().trim()
-var email=$("#email").val()
-var bio =$("#bio").val().trim()
-var hobbies =$("#hobbies").val().trim()
-var age =parseInt($("#age").val().trim())
-var gender=$("#gender").val().trim()
-var financeScore=parseFloat($("#finance").val().trim())
-var personalityScore=parseFloat($("#personality").val().trim())
-var cleanScore = parseFloat($("#clean").val().trim())
-var jobTitle=$("#job").val().trim()
-var employed = false
-var city = $("#city").val().trim()
-var zip = parseInt($("#zip").val().trim())
-var $submitBtn = $("#submit");
 
+var $submitBtn = $("#submit");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -75,37 +61,25 @@ var refreshExamples = function() {
 // Save the new example to the db and refresh the list
 var handleFormSubmit = function(event) {
   event.preventDefault();
-
   var User = {
-    user: user,
-    password_hash: password,
-    email: email,
-    phone: phone,
-    bio: bio,
-    hobbies: hobbies,
-    age: age,
-    gender: gender,
-    budget: budget,
-    finance_score: financeScore,
-    personality_score: personalityScore,
-    clean_score: cleanScore,
-    job_title: jobTitle,
-    employed: employed,
-    city: city,
-    zip: zip,
+    user: $("#user").val().trim(),
+    password: $("#password").val().trim(),
+    email:$("#email").val().trim(),
+    phone: $("#bio").val().trim(),
+    bio:  $("#bio").val().trim(),
+    hobbies: $("#hobbies").val().trim(),
+    age: parseInt($("#age").val().trim()),
+    gender: $("#gender").val().trim(),
+    budget: parseFloat($("#budget").val().trim()),
+    finance_score: parseInt($("#financeScore").val().trim()),
+    personality_score: parseInt($("#personalityScore").val().trim()) ,
+    clean_score: parseInt($("#cleanScore").val().trim()),
+    job_title: $("#jobTitle").val().trim(),
+    employed: true,
+    city: $("#city").val().trim(),
+    zip: parseInt("#zip").val().trim() ,
   };
-module.exports=User
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
-    return;
-  }
-
-  API.saveExample(example).then(function() {
-    refreshExamples();
-  });
-
-  exampleText.val("");
-  exampleDescription.val("");
+  //create new api route for new user, create ajax to call body of user
 };
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
