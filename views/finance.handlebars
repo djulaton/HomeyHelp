@@ -1,0 +1,16 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col">
+            
+                {{#each questions}}
+                <ol type="a">{{question}} {{#each options}}
+                    <li>{{this}}</li>
+                    {{/each}}
+                </ol>
+                {{/each}}
+            
+        </div>
+
+    </div>
+</div>
