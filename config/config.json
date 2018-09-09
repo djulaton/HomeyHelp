@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "mateo",
+    "password": "password",
     "database": "homeyhelp_db",
     "host": "localhost",
     "dialect": "mysql"
