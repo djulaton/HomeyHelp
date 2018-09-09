@@ -1,11 +1,7 @@
 const financeQuestions =
     [{
-        "question": "Do you have a monthly budget?",
-        "options": ["Yes", "No"]
-    },
-    {
         "question": "When you see something you want but it doesnt fit in your budget do you:",
-        "options": ["buy it anyway", "put it on a credit card", "look for sales on said item", "cut back in other areas so you can afford it", "save a portion of the cost over a few months"]
+        "options": ["put it on a credit card", "look for sales on said item", "cut back in other areas so you can afford it", "save a portion of the cost over a few months"]
     },
     {
         "question": "Divide your monthly income by your monthly debt payments, is the result:",

@@ -95,3 +95,5 @@ const cleanlinessQuestions =
             ]
         }
     ];
+
+    module.exports = cleanlinessQuestions;
