@@ -2,7 +2,7 @@
   line-height: 2.5;
 }
 
-#homePage, #regPage, #personalityPage {
+#homePage, #dashBoard, #regPage, #personalityPage {
   border: 2px solid skyblue;
   padding: 10px;
   box-shadow: 5px 10px 18px #888888;
@@ -42,4 +42,30 @@ body, html {
 
 #newLogin {
   font-size: 14px;
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+
+.row.content {
+    height: 600px
+  }
+
+/* Set gray background color and 100% height */
+
+.sidenav {
+    background-color: white;
+    height: 100%;
+  }
+
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+
+@media screen and (max-width: 767px) {
+  .sidenav {
+      height: auto;
+      padding: 15px;
+  }
+  .row.content {
+  height: auto;
+  }
 }
