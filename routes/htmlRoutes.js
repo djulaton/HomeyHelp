@@ -35,6 +35,21 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/html/personality.html"));
   });
 
+  // Load dashboard form
+  app.get("/dashboard", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/html/dashboard.html"));
+  });
+
+  // Load account info form
+  app.get("/account", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/html/account.html"));
+  });
+
+  // Load logout screen
+  app.get("/logout", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/html/logout.html"));
+  });
+
   // Render 404 page for any unmatched routes
   app.get("*", function (req, res) {
     res.render("404");
