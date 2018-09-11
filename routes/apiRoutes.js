@@ -6,16 +6,18 @@ module.exports = function(app) {
     db.User.findAll({where: {email: login}}).then(function(dbUser) {
       res.json(dbUser);
         bcrypt.compare(password, dbUser.password, function (err, res){
-          if (err) throw err
-
+          if (err) {
+            console.log("ERROR:\n--------"+err+"\n--------")
+            res.render("there was an issue logging in, please make sure you entered your email and password correctly")
+            res.render("../public/html/login.html")}
+            else{
           console.log("password match")
+              res.render("../public/html/carousel.html")
+        }
         })
     });
   });
   //find matches to user
-  app.get("api/match", function(req, res){
-    db.User.findAll({where:{}})
-  })
 
   // Create a new User
   app.post("/api/newuser", function(req, res) {
