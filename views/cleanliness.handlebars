@@ -1,31 +1,35 @@
 <div class="bg">
     <div class="container">
+        <div class="jumbotron">
 
-        <div class="row">
-            <div class="col">
-                <ol type="1">
-                    {{#each questions}}
-                    <li>
-                        {{question}}
-                    </li>
-                    <ol type="a">
-                        {{#each options}}
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="cleanlinessQuestion{{@../index}}" id="radio{{@index}}" value="option{{@index}}">
-                            <label class="form-check-label" for="radio{{@index}}">
-                                {{this}}
-                            </label>
-                        </div>
+            <div class="row">
+                <div class="col">
+                    <ol type="1">
+                        {{#each questions}}
+                        <li>
+                            {{question}}
+                        </li>
+                        <ol type="a">
+                            {{#each options}}
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="cleanlinessQuestion{{@../index}}" id="radio{{@index}}" value="option{{@index}}">
+                                <label class="form-check-label" for="radio{{@index}}">
+                                    {{this}}
+                                </label>
+                            </div>
+                            {{/each}}
+                        </ol>
+
                         {{/each}}
                     </ol>
 
-                    {{/each}}
-                </ol>
+                    <a href="/personality">
+                        <button type="button" class="btn btn-primary">Submit</button>
+                    </a>
 
-                <a href="/personality"><button type="button" class="btn btn-primary">Submit</button></a>
+                </div>
 
             </div>
-
         </div>
     </div>
 </div>
