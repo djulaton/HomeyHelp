@@ -35,6 +35,11 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/html/personality.html"));
   });
 
+    // Load matches page
+    app.get("/matches", function (req, res) {
+      res.sendFile(path.join(__dirname, "../public/html/matches.html"));
+    });
+
   // Load dashboard form
   app.get("/dashboard", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/html/dashboard.html"));
