@@ -44,7 +44,8 @@
                             <a href="https://www.16personalities.com/free-personality-test" target="_blank">Find my MBTI type!</a>
                         </div>
 
-                        <a href="matches"><button type="button" class="btn btn-primary">Show me my matches</button></a>
+                        <button type="button" class="btn btn-primary" id="submitPersonality">Show me my matches</button>
+
                     </div>
 
                 </form>
@@ -54,5 +55,30 @@
     </div>
 
 </body>
+
+<script>
+    $("#submitPersonality").on("click", function (event) {
+        var MBTI = $("#mbti").val().trim();
+
+        function updatePost(mbti) {
+            console.log("post: " + mbti);
+            $.ajax({
+                method: "PUT",
+                url: "/api/personality",
+                data: { personality_score: mbti }
+            })
+                .then(function () {
+                    location.href = "/matches";
+                });
+        };
+
+        updatePost(MBTI);
+
+    });
+
+
+
+
+</script>
 
 </html>

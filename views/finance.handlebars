@@ -23,9 +23,9 @@
                         {{/each}}
                     </ol>
 
-                    
+
                     <button type="button" class="btn btn-primary" id="submitFinance">Submit</button>
-                    
+
 
                 </div>
 
@@ -57,11 +57,25 @@
         }
 
         var sumOfScores = 0;
-        for (let i=0; i<scores.length; i++) {
+        for (let i = 0; i < scores.length; i++) {
             sumOfScores += scores[i];
         }
-        var avgOfScores = sumOfScores/scores.length;
+        var avgOfScores = sumOfScores / scores.length;
         alert("Your finance score is: " + avgOfScores);
-        location.href="/cleanliness";
+
+        function updatePost(financeScore) {
+            console.log("post: " + financeScore);
+            $.ajax({
+                method: "PUT",
+                url: "/api/finance",
+                data: {finance_score: financeScore}
+            })
+                .then(function () {
+                    location.href = "/cleanliness";
+                });
+        };
+
+        updatePost(avgOfScores);
+        
     });
 </script>

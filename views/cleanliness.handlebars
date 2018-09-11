@@ -54,11 +54,27 @@
         }
 
         var sumOfScores = 0;
-        for (let i=0; i<scores.length; i++) {
+        for (let i = 0; i < scores.length; i++) {
             sumOfScores += scores[i];
         }
-        var avgOfScores = sumOfScores/scores.length;
+        var avgOfScores = sumOfScores / scores.length;
         alert("Your cleanliness score is: " + avgOfScores);
-        location.href="/personality";
+
+        function updatePost(cleanScore) {
+            console.log("post: " + cleanScore);
+            $.ajax({
+                method: "PUT",
+                url: "/api/cleanliness",
+                data: { cleanliness_score: cleanScore }
+            })
+                .then(function () {
+                    location.href = "/personality";
+                });
+        };
+
+        updatePost(avgOfScores);
+
+
+
     });
 </script>
