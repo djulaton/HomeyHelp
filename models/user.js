@@ -39,5 +39,5 @@ module.exports = function(sequelize, DataTypes) {
     financeScore: DataTypes.INTEGER,
     personalityScore: DataTypes.STRING
   });
-  return User
+  return User;
 };

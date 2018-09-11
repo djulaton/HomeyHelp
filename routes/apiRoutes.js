@@ -3,7 +3,7 @@ var bcrypt = require('bcrypt')
 module.exports = function (app) {
   // verify Login Credentials
   app.get("/api/login", function (req, res) {
-    db.User.findAll({ where: { email: login } }).then(function (dbUser) {
+    db.user.findAll({ where: { email: login } }).then(function (dbUser) {
       res.json(dbUser);
       bcrypt.compare(password, dbUser.password, function (err, res) {
         if (err) {
@@ -18,18 +18,15 @@ module.exports = function (app) {
       })
     });
   });
-  //find matches to user
 
-  // Create a new User
-  // app.post("/api/newuser", function(req, res) {
-  //  var passHash = bcrypt.hash(req.body.password, 10, function(err, res){
-  //     if (err) throw err
-  //     return passHash
-  //   })
-  //   db.User.create(req.body.user, passHash, req.body.email, req.body.phone, req.body.bio, req.body.hobbies, req.body.age, req.body.gender, req.body.budget, req.body.finance_score, req.body.personality_score, req.body.clean_score, req.body.job_title, req.body.employed, req.body.city, req.body.zip).then(function(dbUser) {
-  //     res.json(dbUser);
-  //   });
-  // });
+  // display all users
+  app.get("/api/posts/", function(req, res) {
+    db.user.findAll({})
+      .then(function(dbPost) {
+        res.json(dbPost);
+      });
+  });
+
 
   app.post("/api/newuser", function (req, res) {
     var passHash = bcrypt.hash(req.body.password, 10, function (err, res) {
@@ -39,6 +36,7 @@ module.exports = function (app) {
     db.user.create({ username: req.body.user, password: passHash, email: req.body.email, phone: req.body.phone, bio: req.body.bio, hobbies: req.body.hobbies, age: req.body.age, gender: req.body.gender, budget: req.body.budget, financeScore: req.body.finance_score, personalityScore: req.body.personality_score, cleanScore: req.body.clean_score, jobTitle: req.body.job_title, employed: req.body.employed, city: req.body.city, zip: req.body.zip }).then(function (dbUser) {
       res.json(dbUser);
     });
+
   });
 
   // Delete an example by id
