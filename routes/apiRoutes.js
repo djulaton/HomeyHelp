@@ -3,7 +3,7 @@ var bcrypt = require('bcrypt')
 module.exports = function (app) {
   // verify Login Credentials
   app.get("/api/login", function (req, res) {
-    db.User.findAll({ where: { email: login } }).then(function (dbUser) {
+    db.user.findAll({ where: { email: login } }).then(function (dbUser) {
       res.json(dbUser);
       bcrypt.compare(password, dbUser.password, function (err, res) {
         if (err) {
@@ -18,6 +18,15 @@ module.exports = function (app) {
       })
     });
   });
+
+  // display all users
+  app.get("/api/posts/", function(req, res) {
+    db.user.findAll({})
+      .then(function(dbPost) {
+        res.json(dbPost);
+      });
+  });
+
 
   app.post("/api/newuser", function (req, res) {
     var passHash = bcrypt.hash(req.body.password, 10, function (err, res) {
