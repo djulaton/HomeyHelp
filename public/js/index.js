@@ -53,6 +53,7 @@ var handleFormSubmit = function (event) {
     city: $("#city").val().trim(),
     zip: parseInt($("#zip").val().trim()),
   };
+
   console.log(User);
   API.saveUser(User)
   //create new api route for new user, create ajax to call body of user
