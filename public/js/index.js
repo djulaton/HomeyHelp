@@ -4,7 +4,7 @@ var registerBtn = $("#register");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveUser: function(User) {
+  saveUser: function (User) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
@@ -26,22 +26,21 @@ var API = {
 
 // handleFormSubmit is called whenever we submit a new example
 // Save the new example to the db and refresh the list
-var handleLogin = function(event){
+var handleLogin = function (event) {
   event.preventDefault();
-  var login =$("#emailLogin").val().trim()
+  var login = $("#emailLogin").val().trim()
   var password = $("#passwordLogin").val().trim()
 
   API.login(login, password)
 }
 
-var handleFormSubmit = function(event) {
-  event.preventDefault();
+var handleFormSubmit = function (event) {
   var User = {
     user: $("#name").val().trim(),
     password: $("#password").val().trim(),
-    email:$("#email").val().trim(),
+    email: $("#email").val().trim(),
     phone: $("#phoneNumber").val().trim(),
-    bio:  $("#bio").val().trim(),
+    bio: $("#bio").val().trim(),
     hobbies: $("#hobbies").val().trim(),
     age: parseInt($("#age").val().trim()),
     gender: $("#gender").val().trim(),
@@ -61,3 +60,61 @@ var handleFormSubmit = function(event) {
 
 // Add event listeners to the submit and delete buttons
 registerBtn.on("click", handleFormSubmit);
+
+// Js for finance page
+$("#submitFinance").on("click", function (event) {
+  var scores = [];
+
+  // eventually change j < 10
+  for (let j = 0; j < 10; j++) {
+    var name = "financeQuestion" + j;
+    var radios = document.getElementsByName(name);
+
+    for (var i = 0, length = radios.length; i < length; i++) {
+      if (radios[i].checked) {
+        // do whatever you want with the checked radio
+        scores.push(parseInt(radios[i].value) + 1);
+
+        // only one radio can be logically checked, don't check the rest
+        break;
+      }
+    }
+  }
+
+  var sumOfScores = 0;
+  for (let i = 0; i < scores.length; i++) {
+    sumOfScores += scores[i];
+  }
+  var avgOfScores = sumOfScores / scores.length;
+  alert("Your finance score is: " + avgOfScores);
+  location.href = "/cleanliness";
+});
+
+// Js for cleanliness page
+$("#submitCleanliness").on("click", function (event) {
+  var scores = [];
+
+  // eventually change j < 10
+  for (let j = 0; j < 10; j++) {
+    var name = "cleanlinessQuestion" + j;
+    var radios = document.getElementsByName(name);
+
+    for (var i = 0, length = radios.length; i < length; i++) {
+      if (radios[i].checked) {
+        // do whatever you want with the checked radio
+        scores.push(parseInt(radios[i].value) + 1);
+
+        // only one radio can be logically checked, don't check the rest
+        break;
+      }
+    }
+  }
+
+  var sumOfScores = 0;
+  for (let i = 0; i < scores.length; i++) {
+    sumOfScores += scores[i];
+  }
+  var avgOfScores = sumOfScores / scores.length;
+  alert("Your cleanliness score is: " + avgOfScores);
+  location.href = "/personality";
+});
