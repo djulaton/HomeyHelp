@@ -1,7 +1,8 @@
 {
   "development": {
-    "username": "guest",
-    "password": "password",
+
+    "username": "root",
+    "password": "mateo",
     "database": "homeyhelp_db",
     "host": "127.0.0.1",
     "port": 3306,
