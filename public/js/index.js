@@ -1,7 +1,7 @@
 // Get references to page elements
 
 var registerBtn = $("#register");
-
+var loginBtn = $("#loginBtn")
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveUser: function (User) {
@@ -14,14 +14,14 @@ var API = {
       data: JSON.stringify(User)
     });
   },
-  /*
+
   login: function() {
     return $.ajax({
       url: "api/login",
-      type: "GET"
+      type: "GET",
+      data:login, password
     });
   },
-  */
 };
 
 // handleFormSubmit is called whenever we submit a new example
@@ -35,6 +35,7 @@ var handleLogin = function (event) {
 }
 
 var handleFormSubmit = function (event) {
+  event.preventDefault()
   var User = {
     user: $("#name").val().trim(),
     password: $("#password").val().trim(),
@@ -61,3 +62,4 @@ var handleFormSubmit = function (event) {
 
 // Add event listeners to the submit and delete buttons
 registerBtn.on("click", handleFormSubmit);
+loginBtn.on("click", handleLogin)

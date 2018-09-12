@@ -1,6 +1,6 @@
 {
   "development": {
-    "username": "root",
+    "username": "guest",
     "password": "password",
     "database": "homeyhelp_db",
     "host": "127.0.0.1",
