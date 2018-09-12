@@ -1,29 +1,21 @@
 var db = require("../models");
 var bcrypt = require('bcrypt')
-
-
-
 module.exports = function (app) {
-
-  //
   var userEmail;
-  //
-
-
-
   // verify Login Credentials
   app.get("/api/login", function (req, res) {
     db.user.findOne({ where: { email: req.body.login } }).then(function (dbUser) {
-      var authenticate = bcrypt.compareSync(password, dbUser.password)
+      var authenticate = bcrypt.compareSync(req.body.password, dbUser.user.password)
       if (authenticate === true) {
         console.log("password match")
         return $.ajax({
           type: "GET",
-          url: "/finance",
+          url: "/dashboard",
           data: Dbuser
-        });
+        })
       }
-    });
+    })
+  })
 
     // update user's db row with finance score
     app.put("/api/finance/", function (req, res) {
@@ -36,7 +28,7 @@ module.exports = function (app) {
         .then(function (dbPost) {
           res.json(dbPost);
         });
-    });
+    })
 
     // update user's db row with cleanliness score
     app.put("/api/cleanliness/", function (req, res) {
