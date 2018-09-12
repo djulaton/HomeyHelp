@@ -11,8 +11,14 @@
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+    <!-- Animate remote CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
+    <!-- or -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
     <!-- Font Awesome Glyphicons -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
 
     <!-- Personal CSS file -->
     <link rel="stylesheet" type="text/css" media="screen" href="../styles/styles.css" />
@@ -25,8 +31,8 @@
 
         <div class="container">
 
-            <div class="jumbotron" id="homePage">
-                <img class="img-responsive" src="../images/HomeyHelpLogo.JPG">
+            <div class="jumbotron animated pulse" id="homePage">
+                <img class="img-responsive animated rubberBand" src="../images/HomeyHelpLogo.JPG">
                 <!-- <h1>
                 <i class="fas fa-user-friends" aria-hidden="true"></i> HomeyHelp</h1> -->
                 <hr>
@@ -54,7 +60,8 @@
                 <footer class="footer">
                     <div class="container">
                         <p id="newLogin">
-                            <a href="/registration"><i class="fas fa-question-circle"></i> New user? Create new login</a>
+                            <a href="/registration">
+                                <i class="fas fa-question-circle"></i> New user? Create new login</a>
                         </p>
                     </div>
                 </footer>
