@@ -10,7 +10,7 @@ var API = {
       },
       type: "POST",
       url: "api/newuser",
-      data: JSON.stringify(User)
+      data: User
     });
   },
 
@@ -18,7 +18,7 @@ var API = {
     return $.ajax({
       url: "/api/login",
       type: "POST",
-      data: JSON.stringify(creds)
+      data: creds
     });
   },
 };

@@ -4,6 +4,7 @@ module.exports = function (app) {
   var userEmail;
   // verify Login Credentials
   app.post("/api/login", function (req, res) {
+    console.log(req.body)
     db.user.findOne({ where: { email: req.body.login } }).then(function (dbUser) {
       var authenticate = bcrypt.compareSync(req.body.password, dbUser.password)
       console.log(authenticate)
