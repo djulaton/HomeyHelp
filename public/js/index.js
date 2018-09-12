@@ -14,10 +14,11 @@ var API = {
     });
   },
 
-  login: function() {
+  login: function(creds) {
     return $.ajax({
-      url: "api/login",
-      type: "GET"
+      url: "/api/login",
+      type: "POST",
+      data: JSON.stringify(creds)
     });
   },
 };
@@ -25,11 +26,11 @@ var API = {
 // handleFormSubmit is called whenever we submit a new example
 // Save the new example to the db and refresh the list
 var handleLogin = function (event) {
-var login = $("#emailLogin").val().trim()
-var password = $("#passwordLogin").val().trim()
-
-  API.login(login, password)
-
+  var creds={
+  login: $("#emailLogin").val().trim(),
+  password: $("#passwordLogin").val().trim()
+  }
+  API.login(creds)
 }
 
 var handleFormSubmit = function (event) {
