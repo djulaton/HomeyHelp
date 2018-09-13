@@ -5,11 +5,8 @@ var loginBtn = $("#loginBtn")
 var API = {
   saveUser: function (User) {
     return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
       type: "POST",
-      url: "api/newuser",
+      url: "/api/newuser",
       data: User
     });
   },
@@ -34,7 +31,7 @@ var handleLogin = function (event) {
 }
 
 var handleFormSubmit = function (event) {
-
+event.preventDefault()
   var User = {
     user: $("#name").val().trim(),
     password: $("#password").val().trim(),

@@ -1,7 +1,7 @@
 var db = require("../models");
 var bcrypt = require('bcrypt')
 module.exports = function (app) {
-  var userEmail;
+  //var userEmail;
   // verify Login Credentials
   app.post("/api/login", function (req, res) {
     console.log(req.body)
@@ -57,20 +57,21 @@ module.exports = function (app) {
 
 
   // display all users
-  app.get("/api/posts/", function (req, res) {
-    db.user.findAll({})
-      .then(function (dbPost) {
-        res.json(dbPost);
-      });
-  });
+  // app.get("/api/posts/", function (req, res) {
+  //   db.user.findAll({})
+  //     .then(function (dbPost) {
+  //       res.json(dbPost);
+  //     });
+  // });
 
   // add new user
   app.post("/api/newuser", function (req, res) {
-    userEmail = req.body.email;
+    //userEmail = req.body.email;
+    console.log(req.body)
     var passHash = bcrypt.hashSync(req.body.password, 10)
 
     db.user.create({ username: req.body.user, password: passHash, email: req.body.email, phone: req.body.phone, bio: req.body.bio, hobbies: req.body.hobbies, age: req.body.age, gender: req.body.gender, budget: req.body.budget, financeScore: req.body.finance_score, personalityScore: req.body.personality_score, cleanScore: req.body.clean_score, jobTitle: req.body.job_title, employed: req.body.employed, city: req.body.city, zip: req.body.zip }).then(function (dbUser) {
-      res.json(dbUser);
+    res.json(dbUser);
     });
 
   });
