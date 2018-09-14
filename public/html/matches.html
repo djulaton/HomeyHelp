@@ -13,7 +13,18 @@
 
 <body>
     <div class="container">
-
+        <form>
+            <div class="form-group">
+                <label for="locationFilter">Only show users within this many miles from me:</label>
+                <select multiple class="form-control" id="locationFilter">
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>40</option>
+                    <option>50</option>
+                </select>
+            </div>
+        </form>
         <div class="row">
             <h1>My matches:</h1>
             <div class="col-md-12 blog-container">
@@ -28,23 +39,62 @@
 <script>
 
     $(document).ready(function () {
+
+        $("option").on("click", function () {
+            var radius = $("#locationFilter").val();
+            radius = radius[0];
+            console.log("radius: " + radius);
+            var zip = sessionStorage.getItem("zip");
+            console.log("zip: " + zip);
+            
+            var queryURL = "https://api.zip-codes.com/ZipCodesAPI.svc/1.0/FindZipCodesInRadius?zipcode=" + zip + "&minimumradius=0&maximumradius=" + radius + "&key=Y23J3P9U38KMS91SX4TK";
+            // Creating an AJAX call to find array of all zip codes within the radius specified
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (resObj) {
+                var filteredPosts = [];
+
+                var holdData;
+
+                var arrayOfCities = resObj.DataList;
+
+                var zipCodeArray = arrayOfCities.map(a => a.Code);
+                
+                for (let i = 0; i < zipCodeArray.length; i++ ) {
+                    var matchZip = zipCodeArray[i];
+                    $.get("/api/users/zip/" + matchZip + "", function (data) {
+                        console.log(data);
+                        holdData = data;
+                    })
+                };
+
+                if (!filteredPosts || !filteredPosts.length) {
+                    displayEmpty();
+                }
+                else {
+                    initializeRows(filteredPosts);
+                }
+            });
+            });
+            
+
+        
+
         // blogContainer holds all of our posts
         var blogContainer = $(".blog-container");
 
         // Click events for the edit and delete buttons
 
-        var posts;
-
         // This function grabs posts from the database and updates the view
         function getPosts() {
-            $.get("/api/posts", function (data) {
-                console.log("Posts", data);
-                posts = data;
-                if (!posts || !posts.length) {
+            $.get("/api/users", function (data) {
+                
+                if (!data || !data.length) {
                     displayEmpty();
                 }
                 else {
-                    initializeRows();
+                    initializeRows(data);
                 }
             });
         }
@@ -53,7 +103,7 @@
         getPosts();
         // InitializeRows handles appending all of our constructed post HTML inside
         // blogContainer
-        function initializeRows() {
+        function initializeRows(posts) {
             blogContainer.empty();
             var postsToAdd = [];
             for (var i = 0; i < posts.length; i++) {

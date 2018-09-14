@@ -61,11 +61,13 @@
         var MBTI = $("#mbti").val().trim();
 
         function updatePost(mbti) {
-            console.log("post: " + mbti);
             $.ajax({
                 method: "PUT",
                 url: "/api/personality",
-                data: { personality_score: mbti }
+                data: { 
+                    personalityScore: mbti,
+                    email: sessionStorage.getItem("email")
+                }
             })
                 .then(function () {
                     location.href = "/matches";
