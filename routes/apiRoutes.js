@@ -1,27 +1,23 @@
 var db = require("../models");
 var bcrypt = require('bcrypt')
 module.exports = function (app) {
-  //var userEmail;
+
   // verify Login Credentials
   app.post("/api/login", function (req, res) {
-    console.log(req.body)
+    console.log("are you working?");
     db.user.findOne({ where: { email: req.body.login } }).then(function (dbUser) {
       var authenticate = bcrypt.compareSync(req.body.password, dbUser.password)
-      console.log(authenticate)
       if (authenticate === true) {
-        console.log("password match")
-        res.redirect("/dashboard")
+        res.json({value: authenticate});
       }
-    })
-  })
-
+    });
+  });
 
   // update user's db row with finance score
   app.put("/api/finance/", function (req, res) {
-    db.user.update({
-      financeScore: req.body.finance_score
-    }, {
-        where: { email: userEmail }
+    db.user.update({ financeScore: req.body.financeScore},
+      {
+        where: { email: req.body.email}
       }
     )
       .then(function (dbPost) {
@@ -32,9 +28,9 @@ module.exports = function (app) {
   // update user's db row with cleanliness score
   app.put("/api/cleanliness/", function (req, res) {
     db.user.update({
-      cleanScore: req.body.cleanliness_score
+      cleanScore: req.body.cleanScore
     }, {
-        where: { email: userEmail }
+        where: { email: req.body.email }
       }
     )
       .then(function (dbPost) {
@@ -45,9 +41,9 @@ module.exports = function (app) {
   // update user's db row with personality type
   app.put("/api/personality/", function (req, res) {
     db.user.update({
-      personalityScore: req.body.personality_score
+      personalityScore: req.body.personalityScore
     }, {
-        where: { email: userEmail }
+        where: { email: req.body.email }
       }
     )
       .then(function (dbPost) {
@@ -57,19 +53,30 @@ module.exports = function (app) {
 
 
   // display all users
-  // app.get("/api/posts/", function (req, res) {
-  //   db.user.findAll({})
-  //     .then(function (dbPost) {
-  //       res.json(dbPost);
-  //     });
-  // });
+  app.get("/api/users/", function (req, res) {
+    db.user.findAll({})
+      .then(function (dbPost) {
+        res.json(dbPost);
+      });
+  });
+  
+  // display all users within specified radius
+  app.get("/api/users/zip/:zip", function (req, res) {
+    console.log("are you working?");
+    console.log(req.params);
 
+    db.user.findAll({
+      where: req.params
+    })
+      .then(function (dbPost) {
+        res.json(dbPost);
+      });  
+  });
+  
   // add new user
   app.post("/api/newuser", function (req, res) {
-    //userEmail = req.body.email;
     console.log(req.body)
     var passHash = bcrypt.hashSync(req.body.password, 10)
-
     db.user.create({ username: req.body.user, password: passHash, email: req.body.email, phone: req.body.phone, bio: req.body.bio, hobbies: req.body.hobbies, age: req.body.age, gender: req.body.gender, budget: req.body.budget, financeScore: req.body.finance_score, personalityScore: req.body.personality_score, cleanScore: req.body.clean_score, jobTitle: req.body.job_title, employed: req.body.employed, city: req.body.city, zip: req.body.zip }).then(function (dbUser) {
     res.json(dbUser);
     });

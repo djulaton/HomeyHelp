@@ -1,3 +1,4 @@
+
 // Get references to page elements
 var registerBtn = $("#register")
 var loginBtn = $("#loginBtn")
@@ -12,26 +13,35 @@ var API = {
   },
 
   login: function(creds) {
-    return $.ajax({
+    $.ajax({
       url: "/api/login",
       type: "POST",
       data: creds
+    }).then(function(data){
+      console.log(data.value);
+      if(data.value===true){
+      location.href="/dashboard"
+      }else{
+        console.log('wrong password')
+      }
     });
   },
+
 };
 
 // handleFormSubmit is called whenever we submit a new example
 // Save the new example to the db and refresh the list
 var handleLogin = function (event) {
-  var creds={
-  login: $("#emailLogin").val().trim(),
-  password: $("#passwordLogin").val().trim()
-  }
-  API.login(creds)
-}
 
+  var creds = {
+    login: $("#emailLogin").val().trim(),
+    password: $("#passwordLogin").val().trim()
+  };
+  sessionStorage.setItem("userSession", creds.login);
+  API.login(creds);
+
+}
 var handleFormSubmit = function (event) {
-event.preventDefault()
   var User = {
     user: $("#name").val().trim(),
     password: $("#password").val().trim(),
@@ -50,11 +60,117 @@ event.preventDefault()
     city: $("#city").val().trim(),
     zip: parseInt($("#zip").val().trim()),
   };
-
-  console.log(User);
+  sessionStorage.setItem("email", User.email);
+  sessionStorage.setItem("zip", User.zip);
   API.saveUser(User)
-  //create new api route for new user, create ajax to call body of user
 };
+
+
+// REGISTRATION PAGE STUFF
+// -----------------------------------------
+// Add event listener to the register button
+// $('#modal-incorrectLogin').modal('show');
+// END OF REGISTRATION PAGE STUFF
+// -----------------------------------------
+
+// FINANCE STUFF
+// ---------------------------------------------------
+$(document).ready(function () {
+  $("#submitFinance").on("click", function (event) {
+    var scores = [];
+
+    // eventually change j < 10
+    for (let j = 0; j < 10; j++) {
+      var name = "financeQuestion" + j;
+      var radios = document.getElementsByName(name);
+
+      for (var i = 0, length = radios.length; i < length; i++) {
+        if (radios[i].checked) {
+          // do whatever you want with the checked radio
+          scores.push(parseInt(radios[i].value) + 1);
+
+          // only one radio can be logically checked, don't check the rest
+          break;
+        }
+      }
+    }
+
+    var sumOfScores = 0;
+    for (let i = 0; i < scores.length; i++) {
+      sumOfScores += scores[i];
+    }
+    var avgOfScores = sumOfScores / scores.length;
+    alert("Your finance score is: " + avgOfScores);
+
+    function updatePost(avgScore) {
+      $.ajax({
+        method: "PUT",
+        url: "/api/finance",
+        data: {
+          financeScore: avgScore,
+          email: sessionStorage.getItem("email")
+        }
+      })
+        .then(function () {
+          location.href = "/cleanliness";
+        });
+    };
+    updatePost(avgOfScores);
+  });
+});
+// END OF FINANCE STUFF
+// -----------------------------------------------------------
+
+
+// -----------------------------------------------------------
+// CLEANLINESS STUFF
+$(document).ready(function () {
+  $("#submitCleanliness").on("click", function (event) {
+    var scores = [];
+
+    // eventually change j < 10
+    for (let j = 0; j < 10; j++) {
+      var name = "cleanlinessQuestion" + j;
+      var radios = document.getElementsByName(name);
+
+      for (var i = 0, length = radios.length; i < length; i++) {
+        if (radios[i].checked) {
+          // do whatever you want with the checked radio
+          scores.push(parseInt(radios[i].value) + 1);
+
+          // only one radio can be logically checked, don't check the rest
+          break;
+        }
+      }
+    }
+
+    var sumOfScores = 0;
+    for (let i = 0; i < scores.length; i++) {
+      sumOfScores += scores[i];
+    }
+    var avgOfScores = sumOfScores / scores.length;
+    alert("Your cleanliness score is: " + avgOfScores);
+
+    function updatePost(avgScore) {
+      $.ajax({
+        method: "PUT",
+        url: "/api/cleanliness",
+        data: {
+          cleanScore: avgScore,
+          email: sessionStorage.getItem("email")
+        }
+      })
+        .then(function () {
+          location.href = "/personality";
+        });
+    };
+
+    updatePost(avgOfScores);
+  });
+});
+// END OF CLEANLINESS STUFF
+// -------------------------------------------
+
 
 // Add event listeners to the submit and delete buttons
 registerBtn.on("click", handleFormSubmit);

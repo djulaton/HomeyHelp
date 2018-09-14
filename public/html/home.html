@@ -15,10 +15,47 @@
     <!-- Font Awesome Glyphicons -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
         crossorigin="anonymous">
+
     <!-- Personal CSS file -->
     <link rel="stylesheet" type="text/css" media="screen" href="../styles/styles.css" />
 </head>
 <body>
+
+    <div class="modal" id="modal-invalidPassword" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Oops!</h5>
+                    <span aria-hidden="true">&#9785;</span>
+                </div>
+                <div class="modal-body">
+                    <p>Invalid password. Please try again</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-incorrectLogin" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Oops!</h5>
+                    <span aria-hidden="true">&#9785;</span>
+                </div>
+                <div class="modal-body">
+                    <p>Username does not exist. Please try again</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="bg">
         <div class="container">
             <div class="jumbotron animated bounce" id="homePage">
@@ -51,7 +88,7 @@
                     </div>
                 </footer>
                 <div>
-                    <button type="button" id="loginBtn" class="btn btn-lg btn-primary">
+                    <button type="button" class="btn btn-lg btn-primary" id="loginBtn">
                         <h4>
                             <span class="glyphicon glyphicon-list-alt"></span> Sign in</h4>
                     </button>
@@ -79,4 +116,5 @@
     })
 </script>
 <script src="../js/index.js"></script>
+
 </html>

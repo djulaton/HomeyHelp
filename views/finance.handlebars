@@ -23,9 +23,7 @@
                         {{/each}}
                     </ol>
 
-
                     <button type="button" class="btn btn-primary" id="submitFinance">Submit</button>
-
 
                 </div>
 
@@ -33,49 +31,3 @@
         </div>
     </div>
 </div>
-
-
-<script>
-    // We'll move this to index.js eventually
-    $("#submitFinance").on("click", function (event) {
-        var scores = [];
-
-        // eventually change j < 10
-        for (let j = 0; j < 10; j++) {
-            var name = "financeQuestion" + j;
-            var radios = document.getElementsByName(name);
-
-            for (var i = 0, length = radios.length; i < length; i++) {
-                if (radios[i].checked) {
-                    // do whatever you want with the checked radio
-                    scores.push(parseInt(radios[i].value) + 1);
-
-                    // only one radio can be logically checked, don't check the rest
-                    break;
-                }
-            }
-        }
-
-        var sumOfScores = 0;
-        for (let i = 0; i < scores.length; i++) {
-            sumOfScores += scores[i];
-        }
-        var avgOfScores = sumOfScores / scores.length;
-        alert("Your finance score is: " + avgOfScores);
-
-        function updatePost(financeScore) {
-            console.log("post: " + financeScore);
-            $.ajax({
-                method: "PUT",
-                url: "/api/finance",
-                data: {finance_score: financeScore}
-            })
-                .then(function () {
-                    location.href = "/cleanliness";
-                });
-        };
-
-        updatePost(avgOfScores);
-        
-    });
-</script>
