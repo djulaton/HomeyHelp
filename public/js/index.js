@@ -1,15 +1,14 @@
+
+// Get references to page elements
+var registerBtn = $("#register")
+var loginBtn = $("#loginBtn")
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveUser: function (User) {
-    $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
+    return $.ajax({
       type: "POST",
-      url: "api/newuser",
-      data: JSON.stringify(User)
-    }).then(function (data) {
-      location.href = "/finance";
+      url: "/api/newuser",
+      data: User
     });
   },
 
@@ -25,16 +24,15 @@ var API = {
       }else{
         console.log('wrong password')
       }
-      
     });
   },
-  
+
 };
 
 // handleFormSubmit is called whenever we submit a new example
 // Save the new example to the db and refresh the list
 var handleLogin = function (event) {
-  
+
   var creds = {
     login: $("#emailLogin").val().trim(),
     password: $("#passwordLogin").val().trim()
@@ -43,8 +41,7 @@ var handleLogin = function (event) {
   API.login(creds);
 
 }
-
-var handleFormSubmit = function () {
+var handleFormSubmit = function (event) {
   var User = {
     user: $("#name").val().trim(),
     password: $("#password").val().trim(),
@@ -68,15 +65,11 @@ var handleFormSubmit = function () {
   API.saveUser(User)
 };
 
+
 // REGISTRATION PAGE STUFF
 // -----------------------------------------
 // Add event listener to the register button
 // $('#modal-incorrectLogin').modal('show');
-var loginBtn = $("#loginBtn");
-loginBtn.on("click", handleLogin);
-
-var registerBtn = $("#register");
-registerBtn.on("click", handleFormSubmit);
 // END OF REGISTRATION PAGE STUFF
 // -----------------------------------------
 
@@ -178,3 +171,7 @@ $(document).ready(function () {
 // END OF CLEANLINESS STUFF
 // -------------------------------------------
 
+
+// Add event listeners to the submit and delete buttons
+registerBtn.on("click", handleFormSubmit);
+loginBtn.on("click", handleLogin)

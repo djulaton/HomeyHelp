@@ -1,7 +1,5 @@
 var db = require("../models");
 var bcrypt = require('bcrypt')
-var Sequelize = require("sequelize");
-
 module.exports = function (app) {
 
   // verify Login Credentials
@@ -25,7 +23,7 @@ module.exports = function (app) {
       .then(function (dbPost) {
         res.json(dbPost);
       });
-  });
+  })
 
   // update user's db row with cleanliness score
   app.put("/api/cleanliness/", function (req, res) {
@@ -75,14 +73,12 @@ module.exports = function (app) {
       });  
   });
   
-
   // add new user
   app.post("/api/newuser", function (req, res) {
-    // userEmail = req.body.email;
-    // userZip = req.body.zip;
+    console.log(req.body)
     var passHash = bcrypt.hashSync(req.body.password, 10)
     db.user.create({ username: req.body.user, password: passHash, email: req.body.email, phone: req.body.phone, bio: req.body.bio, hobbies: req.body.hobbies, age: req.body.age, gender: req.body.gender, budget: req.body.budget, financeScore: req.body.finance_score, personalityScore: req.body.personality_score, cleanScore: req.body.clean_score, jobTitle: req.body.job_title, employed: req.body.employed, city: req.body.city, zip: req.body.zip }).then(function (dbUser) {
-      res.json(dbUser);
+    res.json(dbUser);
     });
 
   });
