@@ -5,6 +5,7 @@
 #homePage, #match, #finance, #clean, #dashBoard, #regPage, #personalityPage {
   border: 2px solid steelblue;
   padding: 27px 24px;
+
   box-shadow: 5px 10px 18px #888888;
   margin-top: 15px;
   width: 80%;
@@ -189,4 +190,6 @@ body {
 
 @keyframes loading-7 {
     100% { opacity: 0.3; }
+
 }
+

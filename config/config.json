@@ -1,5 +1,6 @@
 {
   "development": {
+
     "username": "root",
     "password": "password",
     "database": "homeyhelp_db",
