@@ -41,6 +41,17 @@ var handleLogin = function (event) {
 }
 
 var handleFormSubmit = function () {
+  function getEmploymentStatus() {
+    var employmentStatus = $("#employed").val();
+    if (employmentStatus === "Yes") {
+      employmentStatus = 1;
+    } else {
+      employmentStatus = 0;
+    }
+    return employmentStatus;
+  }
+
+
   var User = {
     user: $("#name").val().trim(),
     password: $("#password").val().trim(),
@@ -55,7 +66,7 @@ var handleFormSubmit = function () {
     personality_score: 0,
     clean_score: 0,
     job_title: $("#jobTitle").val().trim(),
-    employed: 1,
+    employed: getEmploymentStatus(),
     city: $("#city").val().trim(),
     zip: parseInt($("#zip").val().trim()),
   };

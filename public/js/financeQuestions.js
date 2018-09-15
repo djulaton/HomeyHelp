@@ -5,11 +5,11 @@ const financeQuestions =
     },
     {
         "question": "Divide your monthly income by your monthly debt payments, is the result:",
-        "options": [">1", "equal to 1", "<1 but >0.5", "<0.5"]
+        "options": ["<0.5", "<1 but >0.5", "roughly equal to 1", ">1"]
     },
     {
         "question": "How many credit cards do you have?",
-        "options": ["1", "2", "3", "more than 3"]
+        "options": ["more than 3", "3", "2", "1"]
     },
     {
         "question": "If you were to lose your entire income tomorrow, what would you do?",
@@ -21,23 +21,23 @@ const financeQuestions =
     },
     {
         "question": "A store is offering 10% off for customers who use their store card. This is an example of making purchases using",
-        "options": ["debit", "currency", "credit", "cash"]
+        "options": ["debit", "currency", "cash", "credit"]
     },
     {
         "question": "What is the term for the money you earn?",
-        "options": ["income", "savings", "interest", "expense"]
+        "options": ["savings", "interest", "expense", "income"]
     },
     {
         "question": "Agreement to receive cash, goods, or services now and pay for them at a later date",
-        "options": ["savings", "income", "credit", "investment"]
+        "options": ["savings", "income", "investment", "credit"]
     },
     {
-        "question": "A card that allows money to be withdrawn from your account",
-        "options": ["credit card", "debit card", "check", "gift certificate"]
+        "question": "A card that allows money to be withdrawn from your account is a",
+        "options": ["credit card", "check", "gift certificate", "debit card"]
     },
     {
         "question": "In order to effectively manage money, you need a",
-        "options": ["budget", "computer", "online checking account", "high paying job"]
+        "options": ["computer", "online checking account", "high paying job", "budget"]
     }];
 
 module.exports = financeQuestions;
