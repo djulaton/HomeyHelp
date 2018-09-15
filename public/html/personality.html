@@ -56,31 +56,6 @@
 
 </body>
 
-<script>
-    $("#submitPersonality").on("click", function (event) {
-        var MBTI = $("#mbti").val().trim();
-
-        function updatePost(mbti) {
-            $.ajax({
-                method: "PUT",
-                url: "/api/personality",
-                data: { 
-                    personalityScore: mbti,
-                    email: sessionStorage.getItem("email")
-                }
-            })
-                .then(function () {
-                    location.href = "/matches";
-                });
-        };
-
-        updatePost(MBTI);
-
-    });
-
-
-
-
-</script>
+<script src="../js/index.js"></script>
 
 </html>

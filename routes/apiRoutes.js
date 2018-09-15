@@ -34,7 +34,7 @@ module.exports = function (app) {
       .then(function (dbPost) {
         res.json(dbPost);
       });
-  })
+  });
 
   // update user's db row with cleanliness score
   app.put("/api/cleanliness/", function (req, res) {
