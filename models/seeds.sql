@@ -4,8 +4,7 @@ USE homeyhelp_db;
 
 -- Roy's homies --
 
-INSERT INTO homies (user, email, phone, bio, hobbies, age, gender, budget, finance_score, clean_score, personality_type, job_title, employed, city, zip_code) 
-VALUES ("candespo", "dcandace@business.org", 5235849310, "Hi my name is Candace Desposito. I work at BusinessCo right here in Oakland as a business person. I like to cook and have social gatherings.", "cooking, cycling, hiking", 46, "female", 2000, 95, 87, "ENFP", "business lady", true, "Oakland", 94613);
+INSERT INTO users (email) VALUES ("dcandace@business.org");
 
 INSERT INTO homies (user, email, phone, bio, hobbies, age, gender, budget, finance_score, clean_score, personality_type, job_title, employed, city, zip_code) 
 VALUES ("jakeman", "jjakman@majorsearchengine.com",9152259746, "My name is Jake Jakman and I'm a software developer at a major internet company in San Francisco. I am looking for someone who is clean and has their act together. I like to play video games and hang out at breweries", "gaming, downhill mountain biking, frisbee golf", 35, "male", 2000, 89, 67, "ENTP", "software developer", true, "San Francisco", 94133);

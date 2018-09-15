@@ -1,14 +1,15 @@
-
-// Get references to page elements
-var registerBtn = $("#register")
-var loginBtn = $("#loginBtn")
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveUser: function (User) {
-    return $.ajax({
+    $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
       type: "POST",
-      url: "/api/newuser",
-      data: User
+      url: "api/newuser",
+      data: JSON.stringify(User)
+    }).then(function (data) {
+      location.href = "/finance";
     });
   },
 
@@ -18,30 +19,28 @@ var API = {
       type: "POST",
       data: creds
     }).then(function(data){
-      console.log(data.value);
       if(data.value===true){
       location.href="/dashboard"
-      }else{
-        console.log('wrong password')
       }
     });
   },
-
+  
 };
 
 // handleFormSubmit is called whenever we submit a new example
 // Save the new example to the db and refresh the list
 var handleLogin = function (event) {
-
+  
   var creds = {
     login: $("#emailLogin").val().trim(),
     password: $("#passwordLogin").val().trim()
   };
-  sessionStorage.setItem("userSession", creds.login);
+  sessionStorage.setItem("email", creds.login);
   API.login(creds);
 
 }
-var handleFormSubmit = function (event) {
+
+var handleFormSubmit = function () {
   var User = {
     user: $("#name").val().trim(),
     password: $("#password").val().trim(),
@@ -61,16 +60,18 @@ var handleFormSubmit = function (event) {
     zip: parseInt($("#zip").val().trim()),
   };
   sessionStorage.setItem("email", User.email);
-  sessionStorage.setItem("zip", User.zip);
   API.saveUser(User)
 };
-
 
 // REGISTRATION PAGE STUFF
 // -----------------------------------------
 // Add event listener to the register button
 // $('#modal-incorrectLogin').modal('show');
-// END OF REGISTRATION PAGE STUFF
+var loginBtn = $("#loginBtn");
+loginBtn.on("click", handleLogin);
+
+var registerBtn = $("#register");
+registerBtn.on("click", handleFormSubmit);
 // -----------------------------------------
 
 // FINANCE STUFF
@@ -118,9 +119,7 @@ $(document).ready(function () {
     updatePost(avgOfScores);
   });
 });
-// END OF FINANCE STUFF
 // -----------------------------------------------------------
-
 
 // -----------------------------------------------------------
 // CLEANLINESS STUFF
@@ -168,10 +167,27 @@ $(document).ready(function () {
     updatePost(avgOfScores);
   });
 });
-// END OF CLEANLINESS STUFF
 // -------------------------------------------
 
+// PERSONALITY PAGE STUFF
+// -------------------------------------------
+$("#submitPersonality").on("click", function (event) {
+    var MBTI = $("#mbti").val().trim();
 
-// Add event listeners to the submit and delete buttons
-registerBtn.on("click", handleFormSubmit);
-loginBtn.on("click", handleLogin)
+    function updatePost(mbti) {
+        $.ajax({
+            method: "PUT",
+            url: "/api/personality",
+            data: { 
+                personalityScore: mbti,
+                email: sessionStorage.getItem("email")
+            }
+        })
+            .then(function () {
+                location.href = "/matches";
+            });
+    };
+
+    updatePost(MBTI);
+});
+// --------------------------------------------
