@@ -2,6 +2,10 @@
   line-height: 2.5;
 }
 
+.card {
+    padding: 20px;
+}
+
 #homePage, #match, #finance, #clean, #dashBoard, #regPage, #personalityPage {
   border: 2px solid steelblue;
   padding: 27px 24px;
@@ -49,6 +53,10 @@ body, html {
 }
 
 /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+
+.question {
+    margin: 0px 0px 7px 0px;
+}
 
 .row.content {
     height: 600px

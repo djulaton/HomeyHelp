@@ -3,86 +3,100 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Blog - Express</title>
+    <title>See mah homies</title>
     <!-- Latest compiled and minified CSS & JS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/flatly/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- Personal CSS -->
+    <link rel="stylesheet" type="text/css" media="screen" href="../styles/styles.css" />
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-3">
-                <form>
-                    <div class="form-group">
-                        <label for="locationFilter">Filter by proximity (in miles):</label>
-                        <select multiple class="form-control" id="locationFilter">
-                            <option class="zip">10</option>
-                            <option class="zip">20</option>
-                            <option class="zip">30</option>
-                            <option class="zip">40</option>
-                            <option class="zip">50</option>
-                        </select>
+    <div class="bg">
+        <div class="container">
+            <div class="jumbotron">
+                <div class="row">
+                    <div class="col-12">
+                        <hr>
+                        <h2 class="text-center">My homies</h2>
+                        <hr>
+                        <br>
                     </div>
-                </form>
-            </div>
+                </div>
 
-            <div class="col-3">
-                <form>
-                    <div class="form-group">
-                        <label for="mbtiFilter">Filter by MBTI compatibility:</label>
-                        <select multiple class="form-control" id="mbtiFilter">
-                            <option class="mbti">Ideal compatibility</option>
-                            <option class="mbti">Good compatibility</option>
-                            <option class="mbti">Moderate compatibility</option>
-                            <option class="mbti">Possible compatibility</option>
-                            <option class="mbti">Low compatibility</option>
-                        </select>
+                <div class="row">
+                    <div class="col-3">
+                        <form>
+                            <div class="form-group">
+                                <label for="locationFilter">Filter by proximity (in miles):</label>
+                                <select multiple class="form-control" id="locationFilter">
+                                    <option class="zip">10</option>
+                                    <option class="zip">20</option>
+                                    <option class="zip">30</option>
+                                    <option class="zip">40</option>
+                                    <option class="zip">50</option>
+                                </select>
+                            </div>
+                        </form>
                     </div>
-                </form>
-            </div>
 
-            <div class="col-3">
-                <form>
-                    <div class="form-group">
-                        <label for="financeFilter">Filter by finance score:</label>
-                        <select multiple class="form-control" id="financeFilter">
-                            <option class="finance">5</option>
-                            <option class="finance">4</option>
-                            <option class="finance">3</option>
-                            <option class="finance">2</option>
-                            <option class="finance">1</option>
-                        </select>
+                    <div class="col-3">
+                        <form>
+                            <div class="form-group">
+                                <label for="mbtiFilter">Filter by MBTI compatibility:</label>
+                                <select multiple class="form-control" id="mbtiFilter">
+                                    <option class="mbti">Ideal compatibility</option>
+                                    <option class="mbti">Good compatibility</option>
+                                    <option class="mbti">Moderate compatibility</option>
+                                    <option class="mbti">Possible compatibility</option>
+                                    <option class="mbti">Low compatibility</option>
+                                </select>
+                            </div>
+                        </form>
                     </div>
-                </form>
-            </div>
 
-            <div class="col-3">
-                <form>
-                    <div class="form-group">
-                        <label for="cleanFilter">Filter by cleanliness score:</label>
-                        <select multiple class="form-control" id="cleanFilter">
-                            <option class="clean">5</option>
-                            <option class="clean">4</option>
-                            <option class="clean">3</option>
-                            <option class="clean">2</option>
-                            <option class="clean">1</option>
-                        </select>
+                    <div class="col-3">
+                        <form>
+                            <div class="form-group">
+                                <label for="financeFilter">Filter by finance score:</label>
+                                <select multiple class="form-control" id="financeFilter">
+                                    <option class="finance">4</option>
+                                    <option class="finance">3</option>
+                                    <option class="finance">2</option>
+                                    <option class="finance">1</option>
+                                </select>
+                            </div>
+                        </form>
                     </div>
-                </form>
-            </div>
 
+                    <div class="col-3">
+                        <form>
+                            <div class="form-group">
+                                <label for="cleanFilter">Filter by cleanliness score:</label>
+                                <select multiple class="form-control" id="cleanFilter">
+                                    <option class="clean">4</option>
+                                    <option class="clean">3</option>
+                                    <option class="clean">2</option>
+                                    <option class="clean">1</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+
+                        <div class="col-md-12 blog-container"></div>
+                    </div>
+                </div>
+            </div>
 
         </div>
 
-        <div class="row">
-            <h1>My matches:</h1>
-            <div class="col-md-12 blog-container">
-            </div>
-        </div>
-
+    </div>
     </div>
     <!-- Custom Script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment.min.js" type="text/javascript"></script>
@@ -111,7 +125,7 @@
                 type: "POST",
                 data: { zipCodeArray }
             }).then(function (data) {
-                if (!data || !data.length) {
+                if (!data || !data.length || data.length === 1) {
                     displayEmpty();
                 }
                 else {
@@ -131,7 +145,7 @@
         var compArray = ["Low compatibility", "Possible compatibility", "Moderate compatibility", "Good compatibility", "Ideal compatibility"];
         var compLevel_num = compArray.indexOf(compLevel) + 1;
 
-        var userMBTI = sessionStorage.getItem("MBTI"); // This is user's mbti, assume known
+        var userMBTI = sessionStorage.getItem("MBTI"); // This is user's mbti
         var typeArray = ["INFP", "ENFP", "INFJ", "ENFJ", "INTJ", "ENTJ", "INTP", "ENTP", "ISFP", "ESFP", "ISTP", "ESTP", "ISFJ", "ESFJ", "ISTJ", "ESTJ"];
         var userMBTI_num = typeArray.indexOf(userMBTI);
 
@@ -263,7 +277,10 @@
         blogContainer.empty();
         var postsToAdd = [];
         for (var i = 0; i < posts.length; i++) {
-            postsToAdd.push(createNewRow(posts[i]));
+            if (posts[i].email !== sessionStorage.getItem("email")) {
+                postsToAdd.push(createNewRow(posts[i]));
+                postsToAdd.push("<br>");
+            }
         }
         blogContainer.append(postsToAdd);
     }
@@ -272,7 +289,6 @@
     function createNewRow(post) {
         var newPostCard = $("<div>");
         newPostCard.addClass("card");
-
 
         var newPostName = $("<span>");
         var newPostGender = $("<span>");
@@ -291,29 +307,32 @@
         newPostGender.text("Gender: " + post.gender);
         newPostAge.text("Age: " + post.age);
         newPostEmail.text("Email: " + post.email);
-        newPostBio.text("Bio: " + post.bio);
-        newPostHobbies.text("Hobbies: " + post.hobbies);
-        newPostBudget.text("Budget: " + post.budget);
-        newPostJobTitle.text("Job title: " + post.jobTitle);
         newPostCity.text("City: " + post.city);
+        newPostBudget.text("Monthly budget: " + post.budget);
+        newPostJobTitle.text("Job title: " + post.jobTitle);
         newPostFinanceScore.text("Finance score: " + post.financeScore);
         newPostCleanScore.text("Clean score: " + post.cleanScore);
-        newPostMBTI.text("MBTI type: " + post.personalityScore);
+        newPostMBTI.text("Personality: " + post.personalityScore);
+        newPostBio.text("Bio: " + post.bio);
+        newPostHobbies.text("Hobbies: " + post.hobbies);
 
         newPostCard.append(newPostName);
         newPostCard.append(newPostGender);
         newPostCard.append(newPostAge);
         newPostCard.append(newPostEmail);
-        newPostCard.append(newPostBio);
-        newPostCard.append(newPostHobbies);
+        newPostCard.append(newPostCity);  
+        newPostCard.append(newPostJobTitle);  
         newPostCard.append(newPostBudget);
-        newPostCard.append(newPostJobTitle);
-        newPostCard.append(newPostCity);
+        newPostCard.append("<br>");
         newPostCard.append(newPostFinanceScore);
         newPostCard.append(newPostCleanScore);
         newPostCard.append(newPostMBTI);
+        newPostCard.append("<br>");
+        newPostCard.append(newPostBio);
+        newPostCard.append(newPostHobbies);
 
         newPostCard.data("post", post);
+
         return newPostCard;
     }
 
