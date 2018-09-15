@@ -55,7 +55,7 @@ var handleFormSubmit = function () {
     personality_score: 0,
     clean_score: 0,
     job_title: $("#jobTitle").val().trim(),
-    employed: 0,
+    employed: 1,
     city: $("#city").val().trim(),
     zip: parseInt($("#zip").val().trim()),
   };
