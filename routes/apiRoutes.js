@@ -1,25 +1,34 @@
 var db = require("../models");
 var bcrypt = require('bcrypt')
 var Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 module.exports = function (app) {
 
   // verify Login Credentials
   app.post("/api/login", function (req, res) {
-    console.log("are you working?");
     db.user.findOne({ where: { email: req.body.login } }).then(function (dbUser) {
       var authenticate = bcrypt.compareSync(req.body.password, dbUser.password)
       if (authenticate === true) {
-        res.json({value: authenticate});
+        res.json({ value: authenticate });
       }
     });
   });
 
+  // add new user
+  app.post("/api/newuser", function (req, res) {
+    var passHash = bcrypt.hashSync(req.body.password, 10)
+    db.user.create({ username: req.body.user, password: passHash, email: req.body.email, phone: req.body.phone, bio: req.body.bio, hobbies: req.body.hobbies, age: req.body.age, gender: req.body.gender, budget: req.body.budget, financeScore: req.body.finance_score, personalityScore: req.body.personality_score, cleanScore: req.body.clean_score, jobTitle: req.body.job_title, employed: req.body.employed, city: req.body.city, zip: req.body.zip }).then(function (dbUser) {
+      res.json(dbUser);
+    });
+
+  });
+
   // update user's db row with finance score
   app.put("/api/finance/", function (req, res) {
-    db.user.update({ financeScore: req.body.financeScore},
+    db.user.update({ financeScore: req.body.financeScore },
       {
-        where: { email: req.body.email}
+        where: { email: req.body.email }
       }
     )
       .then(function (dbPost) {
@@ -53,6 +62,12 @@ module.exports = function (app) {
       });
   });
 
+  // get current user's data from database
+  app.post("/api/users/currentuser", function (req, res) {
+    db.user.findOne({ where: req.body }).then(function (dbUser) {
+      res.json(dbUser);
+    });
+  })
 
   // display all users
   app.get("/api/users/", function (req, res) {
@@ -61,30 +76,63 @@ module.exports = function (app) {
         res.json(dbPost);
       });
   });
-  
+
   // display all users within specified radius
-  app.get("/api/users/zip/:zip", function (req, res) {
+  app.post("/api/users/zip", function (req, res) {
     console.log("are you working?");
-    console.log(req.params);
+    var obj = req.body;
+    var zipArray = obj[Object.keys(obj)[0]];
 
     db.user.findAll({
-      where: req.params
+      where: {
+        zip: {
+          [Op.or]: zipArray
+        }
+      }
     })
       .then(function (dbPost) {
         res.json(dbPost);
-      });  
+      });
+
   });
-  
 
-  // add new user
-  app.post("/api/newuser", function (req, res) {
-    // userEmail = req.body.email;
-    // userZip = req.body.zip;
-    var passHash = bcrypt.hashSync(req.body.password, 10)
-    db.user.create({ username: req.body.user, password: passHash, email: req.body.email, phone: req.body.phone, bio: req.body.bio, hobbies: req.body.hobbies, age: req.body.age, gender: req.body.gender, budget: req.body.budget, financeScore: req.body.finance_score, personalityScore: req.body.personality_score, cleanScore: req.body.clean_score, jobTitle: req.body.job_title, employed: req.body.employed, city: req.body.city, zip: req.body.zip }).then(function (dbUser) {
-      res.json(dbUser);
-    });
+  // display all users with specified compatibility level
+  app.post("/api/users/personality", function (req, res) {
+    console.log("are you working?");
+    var obj = req.body;
+    var mbtiArray = obj[Object.keys(obj)[0]];
 
+    db.user.findAll({
+      where: {
+        personalityScore: {
+          [Op.or]: mbtiArray
+        }
+      }
+    })
+      .then(function (dbPost) {
+        res.json(dbPost);
+      });
+
+  });
+
+  // display all users with specified finance score
+  app.get("/api/users/finance/:score", function (req, res) {
+    db.user.findAll({
+      where: { financeScore: req.params.score }
+    })
+      .then(function (dbPost) {
+        res.json(dbPost);
+      });
+  });
+
+  // display all users with specified clean score
+  app.get("/api/users/clean/:score", function (req, res) {
+    db.user.findAll({
+      where: { cleanScore: req.params.score }
+    })
+      .then(function (dbPost) {
+        res.json(dbPost);
+      });
   });
 
 };
