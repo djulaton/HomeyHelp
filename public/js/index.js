@@ -13,24 +13,28 @@ var API = {
     });
   },
 
-  login: function(creds) {
+  login: function (creds) {
     $.ajax({
       url: "/api/login",
       type: "POST",
       data: creds
-    }).then(function(data){
-      if(data.value===true){
-      location.href="/dashboard"
+    }).then(function (data) {
+      if (data.value === true) {
+        location.href = "/dashboard";
+      } else if (data.value === false) {
+        alert("Incorrect password.");
+      } else {
+        alert("There is no user with that email.");
       }
     });
   },
-  
+
 };
 
 // handleFormSubmit is called whenever we submit a new example
 // Save the new example to the db and refresh the list
 var handleLogin = function (event) {
-  
+
   var creds = {
     login: $("#emailLogin").val().trim(),
     password: $("#passwordLogin").val().trim()
@@ -111,8 +115,23 @@ $(document).ready(function () {
     for (let i = 0; i < scores.length; i++) {
       sumOfScores += scores[i];
     }
-    var avgOfScores = sumOfScores / scores.length;
-    alert("Your finance score is: " + avgOfScores);
+    var avgOfScores = Math.round(sumOfScores / scores.length);
+
+    switch (avgOfScores) {
+      case 1:
+        alert('Your finance score is 1 out of 4: "Ya broke *ss"');
+        break;
+      case 2:
+        alert("Your finance score is 2 out of 4: 'Cup ramen life'");
+        break;
+      case 3:
+        alert("Your finance score is 3 out of 4: 'Barely self-sufficient'");
+        break;
+      case 4:
+        alert("Your finance score is 4 out of 4: 'Bill Gates wannabe'");
+    }
+
+
 
     function updatePost(avgScore) {
       $.ajax({
@@ -158,8 +177,21 @@ $(document).ready(function () {
     for (let i = 0; i < scores.length; i++) {
       sumOfScores += scores[i];
     }
-    var avgOfScores = sumOfScores / scores.length;
-    alert("Your cleanliness score is: " + avgOfScores);
+    var avgOfScores = Math.round(sumOfScores / scores.length);
+
+    switch (avgOfScores) {
+      case 1:
+        alert("Your cleanliness score is 1 out of 4: 'Ya dirty *ss'");
+        break;
+      case 2:
+        alert("Your cleanliness score is 2 out of 4: 'College roommate from hell'");
+        break;
+      case 3:
+        alert("Your cleanliness score is 3 out of 4: 'You aite but don't touch my stuff'");
+        break;
+      case 4:
+        alert("Your cleanliness score is 4 out of 4: 'Hypochondriac'");
+    }
 
     function updatePost(avgScore) {
       $.ajax({
@@ -183,22 +215,22 @@ $(document).ready(function () {
 // PERSONALITY PAGE STUFF
 // -------------------------------------------
 $("#submitPersonality").on("click", function (event) {
-    var MBTI = $("#mbti").val().trim();
+  var MBTI = $("#mbti").val().trim();
 
-    function updatePost(mbti) {
-        $.ajax({
-            method: "PUT",
-            url: "/api/personality",
-            data: { 
-                personalityScore: mbti,
-                email: sessionStorage.getItem("email")
-            }
-        })
-            .then(function () {
-                location.href = "/matches";
-            });
-    };
+  function updatePost(mbti) {
+    $.ajax({
+      method: "PUT",
+      url: "/api/personality",
+      data: {
+        personalityScore: mbti,
+        email: sessionStorage.getItem("email")
+      }
+    })
+      .then(function () {
+        location.href = "/matches";
+      });
+  };
 
-    updatePost(MBTI);
+  updatePost(MBTI);
 });
 // --------------------------------------------

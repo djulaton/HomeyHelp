@@ -8,8 +8,11 @@ module.exports = function (app) {
   // verify Login Credentials
   app.post("/api/login", function (req, res) {
     db.user.findOne({ where: { email: req.body.login } }).then(function (dbUser) {
-      var authenticate = bcrypt.compareSync(req.body.password, dbUser.password)
-      if (authenticate === true) {
+      if (!dbUser) {
+        res.json({ value: "DNE"})
+      }
+      else {
+        var authenticate = bcrypt.compareSync(req.body.password, dbUser.password)
         res.json({ value: authenticate });
       }
     });
@@ -79,7 +82,6 @@ module.exports = function (app) {
 
   // display all users within specified radius
   app.post("/api/users/zip", function (req, res) {
-    console.log("are you working?");
     var obj = req.body;
     var zipArray = obj[Object.keys(obj)[0]];
 
@@ -98,7 +100,6 @@ module.exports = function (app) {
 
   // display all users with specified compatibility level
   app.post("/api/users/personality", function (req, res) {
-    console.log("are you working?");
     var obj = req.body;
     var mbtiArray = obj[Object.keys(obj)[0]];
 
